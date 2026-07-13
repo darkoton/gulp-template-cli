@@ -1,6 +1,6 @@
 # @darkoto/gulp-template-cli
 
-A CLI feature installer for [gulp-template](#). Instead of keeping a
+A CLI feature installer for [gulp-template](https://github.com/darkoton/gulp-template). Instead of keeping a
 `.template/` folder with setup scripts inside every cloned project,
 the scripts live in a standalone package and copy the files you need
 (configs, gulp tasks, styles, demo pages) directly into your project

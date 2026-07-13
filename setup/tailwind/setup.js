@@ -328,7 +328,7 @@ export async function setup() {
       console.log('    • Copy demo page');
       console.log('    • Auto-generate rebuild kit in dist/\n');
 
-const confirmed = await confirm({ message: 'Do you want to continue?' });
+      const confirmed = await confirm({ message: 'Do you want to continue?' });
 
       if (!confirmed) {
         console.log('\n  ❌ Setup cancelled.\n');
@@ -364,7 +364,7 @@ const confirmed = await confirm({ message: 'Do you want to continue?' });
       console.log('    • Add Config link to head.html');
       console.log('    • Copy demo page \n');
 
-      const confirmed = await confirm('Do you want to continue?');
+      const confirmed = await confirm({ message: 'Do you want to continue?' });
 
       if (!confirmed) {
         console.log('\n  ❌ Setup cancelled.\n');
