@@ -1,6 +1,6 @@
 {
   "name": "@darkoto/gulp-template-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Feature pnpm installer CLI for gulp-template — adds tailwind, etc. on demand into the target project.",
   "bin": {
@@ -13,7 +13,13 @@
     "helpers.js",
     "setup-env.js"
   ],
-  "keywords": ["gulp", "cli", "tailwind", "scaffolding", "template"],
+  "keywords": [
+    "gulp",
+    "cli",
+    "tailwind",
+    "scaffolding",
+    "template"
+  ],
   "license": "MIT",
   "author": "Darkoto darkoto12@gmail.com",
   "repository": {
