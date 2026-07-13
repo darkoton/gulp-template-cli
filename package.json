@@ -1,6 +1,6 @@
 {
   "name": "@darkoto/gulp-template-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Feature pnpm installer CLI for gulp-template — adds tailwind, etc. on demand into the target project.",
   "bin": {
