@@ -13,6 +13,7 @@ import {
   getSourcePath,
   copyTemplate,
   safeReplace,
+  getPackageManager
 } from '../../helpers.js';
 
 // ─────────────────────────────────────────────────────────────
@@ -20,10 +21,19 @@ import {
 // ─────────────────────────────────────────────────────────────
 
 function installPackage() {
+  const pm = getPackageManager();
+  
   log(`Installing ${config.packageName}@${config.version}...`, 'info');
 
+  const commands = {
+    npm: `npm i -D ${config.packageName}@${config.version}`,
+    pnpm: `pnpm add -D ${config.packageName}@${config.version}`,
+    yarn: `yarn add -D ${config.packageName}@${config.version}`,
+    bun: `bun add -d ${config.packageName}@${config.version}`,
+  };  
+
   try {
-    execSync(`pnpm i -D ${config.packageName}@${config.version}`, {
+    execSync(commands[pm], {
       stdio: 'pipe',
     });
     log(`Installed ${config.packageName}@${config.version}.`, 'success');
@@ -36,9 +46,9 @@ function installPackage() {
   }
 }
 
-function createConfig(provider = 'pnpm') {
+function createConfig(provider = 'npm') {
   let destPath;
-  if (provider === 'pnpm') {
+  if (provider === 'npm') {
     destPath = resolvePath(
       config.paths.configModule.dest,
       config.files.tailwindConfig,
@@ -262,10 +272,10 @@ function updateGulpfile() {
   log('Updated gulpfile.js.', 'success');
 }
 
-function isInstalled(provider = 'pnpm') {
+function isInstalled(provider = 'npm') {
   let configPath;
 
-  if (provider === 'pnpm')
+  if (provider === 'npm')
     configPath = resolvePath(
       config.paths.configModule.dest,
       config.paths.configModule.filename,
@@ -302,8 +312,8 @@ export async function setup() {
   const provider = await select({
     message: 'Select Tailwind installation',
     choices: [
-      { name: 'pnpm(npm)', value: 'pnpm' },
-      { name: 'cdn', value: 'cdn' },
+      { name: 'Package Manager(npm, pnpm, yarn, bun)', value: 'npm' },
+      { name: 'CDN', value: 'cdn' },
     ],
   });
 
@@ -316,7 +326,7 @@ export async function setup() {
   }
 
   switch (provider) {
-    case 'pnpm': {
+    case 'npm': {
       console.log(`\n  🎨 Tailwind CSS v${config.version} Setup (CLI)\n`);
 
       console.log('  This will:');
@@ -348,7 +358,7 @@ export async function setup() {
       console.log(`\n  ✅ Done! Docs: ${config.urls.docs}\n`);
 
       if (config.options.copyDemoPage) {
-        console.log('  💡 Run "pnpm dev" to view the demo page.\n');
+        console.log('  💡 Run "npm run dev" to view the demo page.\n');
       }
 
       break;
@@ -383,7 +393,7 @@ export async function setup() {
       console.log(`\n  ✅ Done! Docs: ${config.urls.docs}\n`);
 
       if (config.options.copyDemoPage) {
-        console.log('  💡 Run "pnpm dev" to view the demo page.\n');
+        console.log('  💡 Run "npm run dev" to view the demo page.\n');
       }
       break;
     }

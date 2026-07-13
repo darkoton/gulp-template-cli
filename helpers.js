@@ -126,3 +126,24 @@ export const safeReplace = (
     content: nextContent,
   };
 };
+
+// getPackageManager: Detect package manager from lock files or package.json
+export function getPackageManager(cwd = process.cwd()) {
+  const packageJsonPath = path.join(cwd, 'package.json');
+
+  if (fs.existsSync(packageJsonPath)) {
+    const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
+    if (pkg.packageManager) {
+      return pkg.packageManager.split('@')[0];
+    }
+  }
+
+  if (fs.existsSync(path.join(cwd, 'bun.lockb'))) return 'bun';
+  if (fs.existsSync(path.join(cwd, 'bun.lock'))) return 'bun';
+  if (fs.existsSync(path.join(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
+  if (fs.existsSync(path.join(cwd, 'yarn.lock'))) return 'yarn';
+  if (fs.existsSync(path.join(cwd, 'package-lock.json'))) return 'npm';
+
+  return 'npm';
+}
