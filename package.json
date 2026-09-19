@@ -24,7 +24,7 @@
   "author": "Darkoto darkoto12@gmail.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darkoto/gulp-template-cli.git"
+    "url": "git+https://github.com/darkoton/gulp-template-cli.git"
   },
   "engines": {
     "node": ">=18"

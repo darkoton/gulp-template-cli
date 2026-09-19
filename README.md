@@ -149,7 +149,7 @@ node ./node_modules/@darkoto/gulp-template-cli/bin/cli.js tailwind
 ## Development
 
 ```bash
-git clone https://github.com/darkoto/gulp-template-cli.git
+git clone https://github.com/darkoton/gulp-template-cli.git
 cd gulp-template-cli
 npm install
 node bin/cli.js
