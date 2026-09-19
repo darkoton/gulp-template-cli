@@ -219,7 +219,7 @@ function updateGulpfile() {
 
   // Add import
   const importLine =
-    "import { tailwind, tailwindReload } from './gulp/tasks/tailwind.js';";
+    "import { tailwind } from './gulp/tasks/tailwind.js';";
 
   const resultImport = safeReplace(
     content,
@@ -236,7 +236,7 @@ function updateGulpfile() {
   const resultWatcher = safeReplace(
     content,
     /(\/\/ Plugins watcher)/,
-    `$1\n  gulp.watch(['tailwind.config.js', \`\${paths.srcStyles}/tailwind.css\`], gulp.series(tailwind, tailwindReload));`,
+    `$1\n  gulp.watch(['tailwind.config.js', \`\${paths.srcStyles}/tailwind.css\`, globs.html], tailwind);`,
     'add tailwind watcher',
   );
 

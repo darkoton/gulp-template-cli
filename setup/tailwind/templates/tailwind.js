@@ -6,7 +6,7 @@ import path from 'path';
 const run = promisify(exec);
 
 export const tailwind = async () => {
-  const { paths, config } = globalThis.app;
+  const { gulp, paths, config, plugins } = globalThis.app;
   const configPath = path.join(paths.root, 'tailwind.config.js');
   const inputPath = path.join(paths.srcStyles, 'tailwind.css');
 
@@ -26,6 +26,8 @@ export const tailwind = async () => {
 
   // Generate rebuild kit in dist/
   generateRebuildKit(paths.build, configPath, inputPath);
+
+  return gulp.src(outputPath).pipe(plugins.browsersync.stream());
 };
 
 /**
@@ -78,8 +80,3 @@ function generateRebuildKit(distRoot, configPath, inputPath) {
   ].join('\n');
   fs.writeFileSync(path.join(distRoot, 'TAILWIND.md'), readme);
 }
-
-export const tailwindReload = done => {
-  globalThis.app.plugins.browserSync.reload();
-  done();
-};
