@@ -47,7 +47,7 @@ export const files = {
   tailwindCSS: 'tailwind.css',
   tailwindDemo: 'tailwind.html',
   tailwindTask: 'tailwind.js',
-  head: 'head.html',
+  head: '_head.html',
 };
 
 // ─────────────────────────────────────────────────────────────
